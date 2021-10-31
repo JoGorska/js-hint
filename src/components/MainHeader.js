@@ -1,6 +1,6 @@
 import React from "react"
 
-function MainHeader () {
+function MainHeader (props) {
     return (
         <header >
 
@@ -12,7 +12,7 @@ function MainHeader () {
                 {/* button to check if the key is valid */}
 
                 <div className="col-md-2 text-end">
-                    <button id="status" className="btn btn-secondary">Check Key</button>
+                    <button onClick={props.handleOnClick} id="status" className="btn btn-secondary">Check Key</button>
                 </div>
             </div>
 
