@@ -15,6 +15,11 @@ function MainHeader () {
                     <button id="status" className="btn btn-secondary">Check Key</button>
                 </div>
             </div>
+
+            
+        <div className="row">
+            <div className="col"><hr/></div>
+        </div>
   
         </header>
     )
