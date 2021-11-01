@@ -12,7 +12,7 @@ function MainHeader (props) {
                 {/* button to check if the key is valid */}
 
                 <div className="col-md-2 text-end">
-                    <button onClick={props.handleOnClick} id="status" className="btn btn-secondary">Check Key</button>
+                    <button onClick={props.handleOnClick} id="status" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#resultsModal">Check Key</button>
                 </div>
             </div>
 

@@ -19,7 +19,7 @@ const API_URL = "https://ci-jshint.herokuapp.com/api";
 function App() {
 
 
-
+  const [APIExpiryDate, setAPIExpiryDate]  = useState("01/12/2021")
 
   // function to handle errors https://www.tjvantoll.com/2015/09/13/fetch-and-errors/
 
@@ -37,7 +37,11 @@ function handleOnClick () {
     
     .then(handleErrors)
     .then (response => response.json())
-    .then (data => console.log(data.expiry))
+
+    // first tested console.log(data.expiry), than set status for API expiry date so I could display it in the modal
+    // passed props to ModalResults Component
+    .then (data => {
+      setAPIExpiryDate(data.expiry)})
     
     .then(function(response) {
         console.log("ok");
@@ -54,7 +58,7 @@ function handleOnClick () {
 
       <FormReady />
           
-      <ModalResults />
+      <ModalResults APIExpiryDate= {APIExpiryDate}/>
 
     </div>
   )
