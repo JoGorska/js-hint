@@ -1,11 +1,11 @@
 import React from "react"
 
-function FormReady () {
+function FormReady (props) {
 
     return (
         <div className="row">
             <div className="col">
-                <form id="checksform">
+                <form id="checksform" onSubmit={props.handleSubmit}>
 
                     {/* enter file name here */}
 
@@ -66,11 +66,12 @@ function FormReady () {
                             <textarea className="form-control" id="code" name="code"></textarea><br/>
                         </div>
                     </div>
+                    {/* Button */}
+
+                    <button type="submit" className="btn btn-primary text-start" id="submit">Run Checks</button>
                 </form>
 
-                {/* Button */}
 
-                <button className="btn btn-primary text-start" id="submit">Run Checks</button>
             </div>
         </div>
     )}

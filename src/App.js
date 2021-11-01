@@ -51,12 +51,16 @@ function handleOnClick () {
     
 };
 
+function handleSubmit(event) {
+  event.preventDefault()
+  console.log("I was submitted")
+}
   return (
     <div className="App container">
 
       <MainHeader handleOnClick={handleOnClick}/>
 
-      <FormReady />
+      <FormReady handleSubmit = {handleSubmit}/>
           
       <ModalResults APIExpiryDate= {APIExpiryDate}/>
 
