@@ -19,7 +19,9 @@ const API_URL = "https://ci-jshint.herokuapp.com/api";
 function App() {
 
 
-  const [APIExpiryDate, setAPIExpiryDate]  = useState("01/12/2021")
+  const [APIExpiryDate, setAPIExpiryDate]  = useState("01/12/2021");
+  const [modalHeading, setModalHeading] = useState("");
+  const [modalBody, setModalBody] = useState("")
 
   // function to handle errors https://www.tjvantoll.com/2015/09/13/fetch-and-errors/
 
@@ -41,7 +43,11 @@ function handleOnClick () {
     // first tested console.log(data.expiry), than set status for API expiry date so I could display it in the modal
     // passed props to ModalResults Component
     .then (data => {
-      setAPIExpiryDate(data.expiry)})
+      setAPIExpiryDate(data.expiry)
+      setModalHeading("API Key status");
+      setModalBody(`Your Key is valid untill ${APIExpiryDate}`)
+
+      })
     
     .then(function(response) {
         console.log("ok");
@@ -50,22 +56,6 @@ function handleOnClick () {
     });
     
 };
-
-// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-
-// function handleSubmit(event) {
-//   event.preventDefault()
-//   const form = new FormData(document.getElementById("checksform"));
-
-//   console.log(form)
-
-//   postForm(API_URL, form)
-//   .then(data => {
-//     console.log(data); // JSON data parsed by `data.json()` call
-//   });
-
-
-// }
 
 
 async function handleSubmit(e) {
@@ -97,7 +87,7 @@ async function handleSubmit(e) {
 
       <FormReady handleSubmit = {handleSubmit}/>
           
-      <ModalResults APIExpiryDate= {APIExpiryDate}/>
+      <ModalResults modalHeading={modalHeading} modalBody={modalBody} APIExpiryDate= {APIExpiryDate}/>
 
     </div>
   )
