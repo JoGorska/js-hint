@@ -51,10 +51,45 @@ function handleOnClick () {
     
 };
 
-function handleSubmit(event) {
-  event.preventDefault()
-  console.log("I was submitted")
+// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+
+// function handleSubmit(event) {
+//   event.preventDefault()
+//   const form = new FormData(document.getElementById("checksform"));
+
+//   console.log(form)
+
+//   postForm(API_URL, form)
+//   .then(data => {
+//     console.log(data); // JSON data parsed by `data.json()` call
+//   });
+
+
+// }
+
+
+async function handleSubmit(e) {
+  e.preventDefault()
+
+  const form = new FormData(document.getElementById("checksform"));
+
+  const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+          "Authorization": API_KEY,
+      },
+      body: form,
+  });
+
+  const data = await response.json();
+  
+  handleErrors(response)
+
+  console.log(data)
+
 }
+
+
   return (
     <div className="App container">
 
