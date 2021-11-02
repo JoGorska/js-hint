@@ -68,7 +68,7 @@ function FormReady (props) {
                     </div>
                     {/* Button */}
 
-                    <button type="submit" className="btn btn-primary text-start" id="submit">Run Checks</button>
+                    <button type="submit" className="btn btn-primary text-start" id="submit" data-bs-toggle="modal" data-bs-target="#resultsModal">Run Checks</button>
                 </form>
 
 

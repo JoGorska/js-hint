@@ -73,10 +73,28 @@ async function handleSubmit(e) {
 
   const data = await response.json();
   
-  handleErrors(response)
+    if (response.ok) {
+      displayErrorsInSubmittedCode(data);
+  } else {
+      throw new Error(data.error);
+  }
 
-  console.log(data)
+}
 
+function displayErrorsInSubmittedCode(data){
+  setModalHeading(`JSHint Results for ${data.file}`);
+  let results = "";
+  if (data.total_errors === 0) {
+  setModalBody(`No errors reported!`);
+  } else {
+    
+    for (let error of data.error_list) {
+        results += `At line ${error.line}, `;
+        results += `column ${error.col}: `;
+        results += `${error.error}`;
+    }
+    setModalBody(`Total Errors: ${data.total_errors} ${results}`);
+  }
 }
 
 
