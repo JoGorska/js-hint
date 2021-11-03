@@ -1,3 +1,12 @@
+
+![Showpiece of the page js Hint](public\showpiece.png)
+
+page is deployed to Git Hub pages [here](https://jogorska.github.io/js-hint/)
+
+# Aim of the website
+
+This website was created following Matt Rudge tutorial on API. The tutorial created application in vanila JavaScript, which I have created in React instead.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
