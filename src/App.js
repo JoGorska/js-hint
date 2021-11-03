@@ -42,6 +42,7 @@ function handleOnClick () {
 
     // first tested console.log(data.expiry), than set status for API expiry date so I could display it in the modal
     // passed props to ModalResults Component
+    
     .then (data => {
       setAPIExpiryDate(data.expiry)
       setModalHeading("API Key status");
@@ -52,8 +53,10 @@ function handleOnClick () {
     .then(function(response) {
         console.log("ok");
     }).catch(function(error) {
+
         console.log(error);
     });
+  
     
 };
 
@@ -95,7 +98,8 @@ const form = processOptions(new FormData(document.getElementById("checksform")))
       displayErrorsInSubmittedCode(data);
 
     } else {
-      throw new Error(data.error);
+      displayException(data)
+      //throw new Error(data.error);
     }
 
 }
@@ -109,13 +113,20 @@ function displayErrorsInSubmittedCode(data){
     
     for (let error of data.error_list) {
         results += `At line ${error.line}, `;
-        results += `column ${error.col}: `;
+        results += `column ${error.col}:`;
         results += `${error.error}`;
     }
     setModalBody(`Total Errors: ${data.total_errors} ${results}`);
   }
 }
 
+function displayException (data){
+  
+
+  setModalHeading("An Exception has occured");
+  setModalBody(`The API returned status code ${data.status_code}\nError number: ${data.error_no}\nError text: ${data.error}`)
+
+}
 
   return (
     <div className="App container">
