@@ -58,10 +58,29 @@ function handleOnClick () {
 };
 
 
+function processOptions(form) {
+    let optArray = [];
+
+    for (let e of form.entries()) {
+        if (e[0] === "options") {
+            optArray.push(e[1]);
+        }
+    }
+
+    form.delete("options");
+
+    form.append("options", optArray.join());
+
+    return form;
+}
+
+
 async function handleSubmit(e) {
   e.preventDefault()
 
-  const form = new FormData(document.getElementById("checksform"));
+const form = processOptions(new FormData(document.getElementById("checksform")));
+
+  // const form = new FormData(document.getElementById("checksform"));
 
   const response = await fetch(API_URL, {
       method: "POST",
@@ -75,9 +94,16 @@ async function handleSubmit(e) {
   
     if (response.ok) {
       displayErrorsInSubmittedCode(data);
-  } else {
+    } else if (response.status === 500) {
+      return response.json()
+      .then((json) => {
+        const { message, stackTrace } = json;
+        throw new Error(message, stackTrace);
+      });
+
+    } else {
       throw new Error(data.error);
-  }
+    }
 
 }
 
