@@ -1,5 +1,5 @@
 
-![Showpiece of the page js Hint](public\showpiece.png)
+![Showpiece of the page js Hint](public/showpiece.png)
 
 page is deployed to Git Hub pages [here](https://jogorska.github.io/js-hint/)
 
