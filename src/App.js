@@ -7,7 +7,7 @@ import FormReady from './components/FormReady';
 import ModalResults from './components/ModalResults';
 
 //installed bootstrap and import Modal from bootstrap
-//import Modal from 'react-bootstrap/Modal'
+//import Modal from 'react-bootstrap/Modal', but new Modal() doesn't seem to work
 
 
 const API_KEY = "yxr3xVP6sNHAmgELC7Fv-ikLmYQ";
@@ -80,8 +80,7 @@ async function handleSubmit(e) {
 
 const form = processOptions(new FormData(document.getElementById("checksform")));
 
-  // const form = new FormData(document.getElementById("checksform"));
-
+ 
   const response = await fetch(API_URL, {
       method: "POST",
       headers: {
@@ -89,17 +88,11 @@ const form = processOptions(new FormData(document.getElementById("checksform")))
       },
       body: form,
   });
-
+ 
   const data = await response.json();
   
     if (response.ok) {
       displayErrorsInSubmittedCode(data);
-    } else if (response.status === 500) {
-      return response.json()
-      .then((json) => {
-        const { message, stackTrace } = json;
-        throw new Error(message, stackTrace);
-      });
 
     } else {
       throw new Error(data.error);
